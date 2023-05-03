@@ -5,7 +5,7 @@ const app = require('./app');
 
 const port = 2000;
 
-mongoose.connect('mongodb+srv://cristiantejeda14:tr.1993001193@test0.dfd495l.mongodb.net/portfolio')
+mongoose.connect('mongo db connection')
 .then(()=>{
     //server starting
     app.listen(port, ()=>{
