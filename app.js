@@ -10,7 +10,7 @@ const app = express();
 //middlewares
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use('/', projectsRouter);
+app.use('/api-test', projectsRouter);
 
 //export
 module.exports = app;
