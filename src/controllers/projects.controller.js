@@ -15,6 +15,15 @@ const showProjects = (req, res) => {
     })
 }
 
+const getProject = (req, res) => {
+    const ID = req.params.id;
+    projectsModel.find({_id: ID}).then(data => {
+        res.status(200).json(data);
+    }).catch(err => {
+        res.status(500).send(err);
+    })
+}
+
 const saveProject = (req, res) => {
     let project = new projectsModel();
 
@@ -44,6 +53,7 @@ const delteProject = (res, rew) => {}
 module.exports = {
     home,
     showProjects,
+    getProject,
     saveProject,
     editProject,
     delteProject
