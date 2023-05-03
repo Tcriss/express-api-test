@@ -8,7 +8,7 @@ let router = express.Router();
 //routes
 router.get('/', home);
 router.get('/projects', showProjects);
-router.post('/save_project/', saveProject);
-router.get('/get-project/:id?', getProject)
+router.post('/save-project/', saveProject);
+router.get('/project/:id?', getProject)
 
 module.exports = router;
