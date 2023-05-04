@@ -2,10 +2,11 @@
 
 const mongoose = require('mongoose');
 const app = require('./app');
+const db = require('./config.example.json')
 
 const port = 2000;
 
-mongoose.connect('mongo db connection')
+mongoose.connect(db.database)
 .then(()=>{
     //server starting
     app.listen(port, ()=>{

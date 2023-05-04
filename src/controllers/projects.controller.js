@@ -3,25 +3,24 @@
 const projectsModel = require('../models/projects.model');
 
 const home = (req, res) => {
-    res.status(200).send({ message: 'Soy el metodo home del controlador projects' });
+    res.status(200).send({ message: "I'm home route from your API" });
 }
 
 const showProjects = (req, res) => {
     projectsModel.find().then(data => {
         res.status(200).json(data);
     }).catch(err => {
-        console.log(err);
-        res.status(500).send(error);
-    })
+        res.status(500).send(err.message);
+    });
 }
 
 const getProject = (req, res) => {
-    const ID = req.params.id;
-    projectsModel.find({_id: ID}).then(data => {
+    const id = req.params.id;
+    projectsModel.find({_id: id}).then(data => {
         res.status(200).json(data);
     }).catch(err => {
-        res.status(500).send(err);
-    })
+        res.status(500).send(err.message);
+    });
 }
 
 const saveProject = (req, res) => {
@@ -40,15 +39,30 @@ const saveProject = (req, res) => {
             message: 'project saved'
         });
     } else {
-        return res.status(404).send({
-            message: 'project not saved'
-        });
+        return res.status(404).send({ message: 'project not saved' });
     }
 }
 
-const editProject = (req, res) => {}
+const editProject = (req, res) => {
+    const id = req.params.id;
+    const update = req.body;
 
-const delteProject = (res, rew) => {}
+    projectsModel.findByIdAndUpdate( id, update,{new: true}).then(data =>{
+        res.status(200).json(data);
+    }).catch(err =>{
+        res.status(500).send(err.message);
+    });
+}
+
+const deleteProject = (req, res) => {
+    const id = req.params.id;
+
+    projectsModel.findByIdAndDelete(id).then(data =>{
+        res.status(200).send({message: 'project deleted succesfully'});
+    }).catch(err =>{
+        res.status(500).send(err.message);
+    });
+}
 
 module.exports = {
     home,
@@ -56,5 +70,5 @@ module.exports = {
     getProject,
     saveProject,
     editProject,
-    delteProject
+    deleteProject
 };
