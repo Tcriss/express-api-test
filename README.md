@@ -15,7 +15,7 @@ npm install
 ```
 ### Endpoints
 
-with the `npm start` you can run the api at port 2000, here are the endpoints if you want to tested:
+with the `npm start` you can run the api at port 2000, here are the endpoints if you want to test it:
 
 ##### Show Projects
 
